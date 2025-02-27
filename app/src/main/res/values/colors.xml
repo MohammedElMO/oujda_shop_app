@@ -2,4 +2,20 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+<!--    <color name="w_smoke">#FFFFFFFF</color>-->
+
+<!--    Main UI elements, buttons, accents-->
+    <color name="primaryColor" >#5233DD</color>
+<!--    Darker shade for contrast, headers, emphasis-->
+    <color name="PrimaryVariantColor" >#1D0F5F</color>
+<!--  A softer complement to the primary color  -->
+    <color name="SecondaryColor" >#7A5FFF</color>
+<!--  Light grayish-blue for a modern, clean look  -->
+    <color name="BackgroundColor" >#F5F5FA</color>
+
+<!-- Dark bluish-gray for good readability-->
+    <color name="TextColor" >#333366</color>
+    <color name="red" >#FF0000</color>
+    <color name="rippele_red" >#D21F3C</color>
+
 </resources>

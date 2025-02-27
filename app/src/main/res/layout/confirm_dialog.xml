@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?><!-- custom_dialog.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/customTextView"
+        style="@style/normal_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="quelle option souhaitez-vous choisir ?" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp">
+
+        <Button
+            android:id="@+id/button_positive"
+            style="@style/default_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mise à jour"
+            android:background="@drawable/filled_btn"
+            android:drawableLeft="@drawable/update"
+            android:drawablePadding="5dp"
+            android:layout_marginEnd="6dp"
+            />
+        <Button
+            android:id="@+id/button_negative"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/default_btn"
+            android:drawableLeft="@drawable/delete"
+            android:textColor="@color/SecondaryColor"
+            android:background="@drawable/outlined_btn"
+            android:text="Supprimer"
+            android:drawablePadding="3dp"
+            />
+    </LinearLayout>
+
+
+</LinearLayout>

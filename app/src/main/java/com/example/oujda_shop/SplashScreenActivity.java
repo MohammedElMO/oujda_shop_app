@@ -11,6 +11,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.oujda_shop.utils.NavigationUtils;
+import com.example.oujda_shop.utils.SharedStore;
+
 public class SplashScreenActivity extends AppCompatActivity {
 
     @Override
@@ -26,26 +29,23 @@ public class SplashScreenActivity extends AppCompatActivity {
 
 
         new Handler().postDelayed(() -> {
+            SharedStore store =  SharedStore.getOneStore(getApplicationContext());
 
-            Intent navigate;
+//            final boolean isLogin = store.getBoolean("isLogin",false);
+//
+//            if(isLogin) {
+//                NavigationUtils.redirect(this, LoginActivity.class);
+//            }else {
+//                NavigationUtils.redirect(this, MainActivity.class);
+//
+//            }
 
-            SharedPreferences store = getSharedPreferences("app-store",MODE_PRIVATE);
-
-            final boolean isLogedIn = store.getBoolean("isLogin",false);
-
-            if(isLogedIn) {
-               navigate  = new Intent(this,MainActivity.class);
-               startActivity(navigate);
-
-            }else {
-                navigate  = new Intent(this,LoginActivity.class);
-                startActivity(navigate);
-            }
+            NavigationUtils.redirect(this,MainActivity.class);
 
 
             finish();
 
-        },3000);
+        },40);
 
     }
 }

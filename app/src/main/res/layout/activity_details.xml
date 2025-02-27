@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/main"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginHorizontal="15dp">
+
+        <ImageView
+            android:id="@+id/product_image"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            />
+
+        <TextView
+            android:id="@+id/category_badge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/badge_background"
+            android:padding="8dp"
+            android:text="categoryName"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:layout_marginTop="-20dp"
+            android:layout_alignParentEnd="true" />
+
+        <TextView
+            android:id="@+id/product_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Product Name"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:paddingTop="8dp" />
+
+        <TextView
+            android:id="@+id/product_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="$99.99"
+            android:textSize="18sp"
+            android:textColor="@color/SecondaryColor"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/product_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Product description goes here."
+            android:textSize="16sp"
+            android:paddingTop="8dp" />
+
+        <RadioGroup
+            android:id="@+id/options_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="10dp">
+
+            <RadioButton
+                android:id="@+id/option1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Blue" />
+
+            <RadioButton
+                android:id="@+id/option2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Purple" />
+        </RadioGroup>
+
+        <CheckBox
+            android:id="@+id/favorite_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add to Favorites"
+            android:textAlignment="center"
+            android:paddingTop="10dp" />
+
+        <Switch
+            android:id="@+id/extra_feature_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enable Extra Feature"
+            android:paddingTop="10dp" />
+
+    </LinearLayout>
+</ScrollView>

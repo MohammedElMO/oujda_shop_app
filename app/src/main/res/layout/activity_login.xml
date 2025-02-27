@@ -5,28 +5,112 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginHorizontal="20dp"
+    android:layout_marginVertical="30dp"
+    android:orientation="vertical"
     tools:context=".LoginActivity">
 
-    <TextView
+
+    <ImageView
+        android:id="@+id/logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="Hello To my APP"
+        android:layout_gravity="center"
+        android:contentDescription="logo_of_app"
+        android:src="@drawable/app_logo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.09"
+
+        />
+
+
+    <ImageView
+        android:id="@+id/pass_icon"
+        android:layout_width="23dp"
+        android:layout_height="23dp"
+        android:layout_marginEnd="13dp"
+        android:elevation="20dp"
+        android:src="@drawable/invisible_eye"
+        app:layout_constraintBottom_toBottomOf="@id/password"
+        app:layout_constraintEnd_toEndOf="@id/password"
+        app:layout_constraintTop_toTopOf="@id/password"
+
+        app:layout_constraintVertical_bias="0.53" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.113"></TextView>
+        app:layout_constraintTop_toBottomOf="@+id/password"
+        app:layout_constraintVertical_bias="0.224"
+
+        >
+
+        <Button
+            android:id="@+id/login_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/default_btn"
+            android:text="login"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.459"
+            app:layout_constraintTop_toBottomOf="@+id/password"
+            app:layout_constraintVertical_bias="0.082" />
+
+
+        <Button
+            android:id="@+id/sign_up_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/outlined_btn"
+            android:textColor="@color/SecondaryColor"
+            android:text="sign up"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.3"
+            app:layout_constraintStart_toStartOf="parent" />
+    </LinearLayout>
 
     <EditText
-        android:layout_width="wrap_content"
+        android:id="@+id/password"
+        style="@style/input"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        />
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_input"
+        android:drawableStart="@drawable/password"
+        android:drawablePadding="13dp"
+        android:hint="Password"
         android:inputType="textPassword"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email"
+        app:layout_constraintVertical_bias="0.055" />
+
+    <EditText
+        android:id="@+id/email"
+        style="@style/input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="136dp"
+        android:background="@drawable/rounded_input"
+        android:drawableStart="@drawable/mail"
+        android:drawablePadding="13dp"
+        android:hint="Email address"
+        android:inputType="textEmailAddress"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp"
         />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="10dp">
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/arrow"
+        android:contentDescription="Back"
+        android:visibility="gone"
+        />
+
+    <ImageView
+        android:id="@+id/action_bar_logo"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/logo_without_text" />
+
+    <TextView
+        android:id="@+id/action_bar_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="Products of Vills"
+        android:layout_weight="1"
+        android:textSize="18sp" />
+
+    <ImageButton
+        android:id="@+id/add_product_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/add_icon_purple"
+
+       />
+
+
+</LinearLayout>
