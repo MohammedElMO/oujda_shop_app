@@ -126,7 +126,6 @@ public class ProductActivity extends AppCompatActivity {
 
             View customView = actionBar.getCustomView();
 
-            // Find the button inside the custom view
             addProductBtn = customView.findViewById(R.id.add_product_btn);
 
 

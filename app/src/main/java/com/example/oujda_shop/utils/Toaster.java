@@ -14,16 +14,12 @@ import com.google.android.material.snackbar.Snackbar;
 public class Toaster {
 
 
-    //    (android.R.id.content)
     public static void showSnackBar(Context context, View view, String message,int drawable) {
         Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_LONG);
 
-        // Get Snackbar's TextView
         View snackbarView = snackbar.getView();
         TextView snackbarTextView = snackbarView.findViewById(com.google.android.material.R.id.snackbar_text);
 
-        // Add icon to the left of text
-//        com.google.android.material.R.drawable.abc_ab_share_pack_mtrl_alpha
         Drawable icon = ContextCompat.getDrawable(context, drawable); // Replace with your icon
         icon.setBounds(0, 0, icon.getIntrinsicWidth(), icon.getIntrinsicHeight());
         snackbarTextView.setCompoundDrawables(icon, null, null, null);

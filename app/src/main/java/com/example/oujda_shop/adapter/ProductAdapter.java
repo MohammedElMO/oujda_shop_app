@@ -65,9 +65,9 @@ public class ProductAdapter extends BaseAdapter {
         File imgFile = new File(product.getImageUrl());
 
         if (imgFile.exists()) {
-            productImage.setImageURI(Uri.fromFile(imgFile)); // Set image to ImageView
+            productImage.setImageURI(Uri.fromFile(imgFile));
         } else {
-            productImage.setImageResource(R.drawable.oujda_shop); // Set a default image if not found
+            productImage.setImageResource(R.drawable.oujda_shop);
         }
         productName.setText(product.getName());
         productPrice.setText(String.valueOf(product.getPrice()) + " DH") ;
@@ -77,8 +77,8 @@ public class ProductAdapter extends BaseAdapter {
     }
 
     public void updateList(ArrayList<Product> newItems) {
-        this.productList.clear(); // Clear the existing data
-        this.productList.addAll(newItems); // Add the new data
-        notifyDataSetChanged(); // Notify the adapter that the data has changed
+        this.productList.clear();
+        this.productList.addAll(newItems);
+        notifyDataSetChanged();
     }
 }

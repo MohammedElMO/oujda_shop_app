@@ -31,22 +31,21 @@ public class CategoryAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return categoryList.size(); // Number of items in the list
+        return categoryList.size();
     }
 
     @Override
     public Category getItem(int position) {
-        return categoryList.get(position); // Returns the category object at the given position
+        return categoryList.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        return categoryList.get(position).getId(); // Unique ID for the category
+        return categoryList.get(position).getId();
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        // Inflate a new view every time (inefficient)
         convertView = inflater.inflate(R.layout.category_item, parent, false);
 
         TextView name = convertView.findViewById(R.id.category_name);
@@ -55,13 +54,7 @@ public class CategoryAdapter extends BaseAdapter {
 
         Category category = categoryList.get(position);
 
-//        File imgFile = new File(category.getImageResource());
-//
-//        if (imgFile.exists()) {
-//            catImage.setImageURI(Uri.fromFile(imgFile));
-//        } else {
-//            catImage.setImageResource(R.drawable.oujda_shop);
-//        }
+
 
         if (category.getImageResource() != null && !category.getImageResource().isEmpty()) {
             File imgFile = new File(category.getImageResource());
@@ -69,10 +62,10 @@ public class CategoryAdapter extends BaseAdapter {
             if (imgFile.exists()) {
                 catImage.setImageURI(Uri.fromFile(imgFile));
             } else {
-                catImage.setImageResource(R.drawable.oujda_shop); // A default placeholder
+                catImage.setImageResource(R.drawable.oujda_shop);
             }
         } else {
-            catImage.setImageResource(R.drawable.oujda_shop); // A default placeholder
+            catImage.setImageResource(R.drawable.oujda_shop);
         }
 
         name.setText(category.getName());
@@ -81,9 +74,9 @@ public class CategoryAdapter extends BaseAdapter {
         return convertView;
     }
     public void updateList(ArrayList<Category> newItems) {
-        this.categoryList.clear(); // Clear the existing data
-        this.categoryList.addAll(newItems); // Add the new data
-        notifyDataSetChanged(); // Notify the adapter that the data has changed
+        this.categoryList.clear();
+        this.categoryList.addAll(newItems);
+        notifyDataSetChanged();
     }
 
 
