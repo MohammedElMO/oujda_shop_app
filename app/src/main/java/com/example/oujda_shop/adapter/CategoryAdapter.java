@@ -47,18 +47,15 @@ public class CategoryAdapter extends BaseAdapter {
         // Inflate a new view every time (inefficient)
         convertView = inflater.inflate(R.layout.category_item, parent, false);
 
-        // Find views (findViewById is called on every item, reducing performance)
         TextView name = convertView.findViewById(R.id.category_name);
         TextView createdAt = convertView.findViewById(R.id.category_date);
         ImageView image = convertView.findViewById(R.id.category_image);
 
-        // Get the current category
         Category category = categoryList.get(position);
 
-        // Populate views with data
         name.setText(category.getName());
-        createdAt.setText(category.getCreatedAt().toString());
-        image.setImageResource(category.getImageResource());
+        createdAt.setText(category.getCreatedAt());
+//        image.setImageResource(category.getImageResource());
 
         return convertView;
     }

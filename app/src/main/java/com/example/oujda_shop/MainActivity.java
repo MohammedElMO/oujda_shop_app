@@ -30,6 +30,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     // ML kit - > access to camera + scan code QR + show product details
 //    Log.d("Hello","Dbrna 3liha");
+
     ListView categoriesList;
     Button addNewCategoryBtn;
     CategoriesQueries db;
@@ -46,35 +47,35 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        addNewCategoryBtn = findViewById(R.id.add_new_category_btn);
+//        addNewCategoryBtn = findViewById(R.id.add_new_category_btn);
         db = new CategoriesQueries(Tables.Category, getApplicationContext());
-
+//
         setUpActionBar();
-        onAddNewCategory();
-        //TODO: gray color for the icons of the list
-
+//        onAddNewCategory();
+//        //TODO: gray color for the icons of the list
+//
         categoriesList = findViewById(R.id.categories_list);
-
-
+//
+//
         categories = db.getAll();
-
+//
         adapter = new CategoryAdapter(this, categories);
         categoriesList.setAdapter(adapter);
 
-
+//
         categoriesList.setOnItemClickListener((parent, view, position, id) -> {
             Category category = (Category) parent.getItemAtPosition(position);
 
             NavigationUtils.redirectWithPayload(this, ProductActivity.class, category, "category");
 
         });
-
-        categoriesList.setOnItemLongClickListener((parent, view, position, id) -> {
-            Category category = (Category) parent.getItemAtPosition(position);
-            showConfirmation(category);
-
-            return true;
-        });
+//
+//        categoriesList.setOnItemLongClickListener((parent, view, position, id) -> {
+//            Category category = (Category) parent.getItemAtPosition(position);
+//            showConfirmation(category);
+//
+//            return true;
+//        });
 
 
     }
@@ -93,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
                     dialog.dismiss();
                 }
         );
+
 
         negativeButton.setOnClickListener(v -> {
             db.delete(category.getId());

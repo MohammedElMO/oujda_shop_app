@@ -31,8 +31,8 @@ public class SplashScreenActivity extends AppCompatActivity {
         new Handler().postDelayed(() -> {
             SharedStore store =  SharedStore.getOneStore(getApplicationContext());
 
-//            final boolean isLogin = store.getBoolean("isLogin",false);
-//
+            final boolean isLogin = store.getBoolean("isLogin",false);
+
 //            if(isLogin) {
 //                NavigationUtils.redirect(this, LoginActivity.class);
 //            }else {
@@ -40,7 +40,8 @@ public class SplashScreenActivity extends AppCompatActivity {
 //
 //            }
 
-            NavigationUtils.redirect(this,MainActivity.class);
+                NavigationUtils.redirect(this, MainActivity.class);
+
 
 
             finish();

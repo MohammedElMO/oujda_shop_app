@@ -11,7 +11,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
 
     private DataBaseHelper(@Nullable Context ctx) {
-        super(ctx, "shop.db", null, 12);
+        super(ctx, "shop.db", null, 13);
 
 
     }
@@ -32,7 +32,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                         "id INTEGER  PRIMARY KEY AUTOINCREMENT," +
                         "name TEXT NOT NULL UNIQUE," +
                         "description TEXT," +
-                        "imageUrl INTEGER  ," +
+                        "imageUrl TEXT  ," +
                         "createdAt DATETIME DEFAULT CURRENT_TIMESTAMP); "
         );
         db.execSQL(

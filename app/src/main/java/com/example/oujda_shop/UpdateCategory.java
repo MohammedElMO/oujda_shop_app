@@ -48,13 +48,12 @@ public class UpdateCategory extends AppCompatActivity {
         categoryDescription = findViewById(R.id.description);
         icons = findViewById(R.id.icons);
         updateCategoryBtn = findViewById(R.id.add_category_btn);
-//        setUpActionBar();
 //        onSelectIcon();
         db = new CategoriesQueries(Tables.Category, getApplicationContext());
 
         categoryName.setText(updatedCategory.getName());
         categoryDescription.setText(updatedCategory.getDescription());
-        icons.setSelection(updatedCategory.getImageResource());
+//        icons.setSelection(updatedCategory.getImageResource());
 
         updateCategoryBtn.setOnClickListener(v -> {
 

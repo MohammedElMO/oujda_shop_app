@@ -64,7 +64,7 @@ public class CategoriesQueries implements GeniricDao<Category> {
                 int dateIndex = cursor.getColumnIndexOrThrow("createdAt");
                 int resIndex = cursor.getColumnIndexOrThrow("imageUrl");
 
-                foundCategory = new Category(cursor.getInt(idIndex), cursor.getString(nameIndex), cursor.getInt(resIndex), cursor.getString(dateIndex));
+                foundCategory = new Category(cursor.getInt(idIndex), cursor.getString(nameIndex), cursor.getString(resIndex), cursor.getString(dateIndex));
             }
         }
 
@@ -83,7 +83,7 @@ public class CategoriesQueries implements GeniricDao<Category> {
                 int dateIndex = cursor.getColumnIndexOrThrow("createdAt");
                 int resIndex = cursor.getColumnIndexOrThrow("imageUrl");
 
-                foundCategory = new Category(cursor.getInt(idIndex), cursor.getString(nameIndex), cursor.getInt(resIndex), cursor.getString(dateIndex));
+                foundCategory = new Category(cursor.getInt(idIndex), cursor.getString(nameIndex), cursor.getString(resIndex), cursor.getString(dateIndex));
             }
         }
 
@@ -103,15 +103,12 @@ public class CategoriesQueries implements GeniricDao<Category> {
                 int dateIndex = cursor.getColumnIndexOrThrow("createdAt");
                 int resIndex = cursor.getColumnIndexOrThrow("imageUrl");
 
-                Log.d("row", idIndex + "");
-                Log.d("row", nameIndex + "");
-                Log.d("row", dateIndex + "");
-                Log.d("row", resIndex + "");
+
 
                 int id = cursor.getInt(idIndex);
                 String name = cursor.getString(nameIndex);
                 String createdAt = cursor.getString(dateIndex);
-                int imageResource = cursor.getInt(resIndex);
+                String imageResource = cursor.getString(resIndex);
                 Date date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).parse(createdAt);
 
                 categories.add(new Category(id, name, imageResource, DateUtility.getTimeAgo(date)));

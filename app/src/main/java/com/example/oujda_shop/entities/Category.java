@@ -6,11 +6,11 @@ import java.io.Serializable;
 public class Category implements Serializable {
     private Integer id;
     private String name;
-    private Integer imageResource;
+    private String imageResource;
     private String createdAt;
     private String description;
 
-    public Category(Integer id, String name,String description, int imageResource, String createdAt) {
+    public Category(Integer id, String name,String description, String imageResource, String createdAt) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -18,13 +18,13 @@ public class Category implements Serializable {
         this.createdAt = createdAt;
     }
 
-    public Category(Integer id, String name, int imageResource, String createdAt) {
+    public Category(Integer id, String name, String imageResource, String createdAt) {
         this.id = id;
         this.name = name;
         this.imageResource = imageResource;
         this.createdAt = createdAt;
     }
-    public Category(String name,String description, Integer imageResource) {
+    public Category(String name,String description, String imageResource) {
         this.name = name;
         this.imageResource = imageResource;
         this.description =description;
@@ -37,7 +37,7 @@ public class Category implements Serializable {
     // Getters
     public Integer getId() { return id; }
     public String getName() { return name; }
-    public Integer getImageResource() { return imageResource; }
+    public String getImageResource() { return imageResource; }
 
     public String getCreatedAt() {
         return createdAt;

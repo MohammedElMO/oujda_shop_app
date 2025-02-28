@@ -58,6 +58,7 @@ public class ProductActivity extends AppCompatActivity {
         productList = productDb.getAllOfCategory(category);
 
 
+
         productAdapter = new ProductAdapter(this, productList);
         gridView.setAdapter(productAdapter);
 
