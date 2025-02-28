@@ -6,17 +6,13 @@
     android:elevation="10dp"
     android:orientation="horizontal"
     android:padding="5dp"
-
-
     >
 
     <ImageView
         android:id="@+id/category_image"
-        android:layout_width="30dp"
-        android:layout_height="33dp"
+        android:layout_width="40dp"
+        android:layout_height="43dp"
         android:layout_centerVertical="true"
-        android:src="@drawable/ic_launcher_foreground"
-
         />
 
     <LinearLayout
@@ -27,7 +23,7 @@
         android:divider="@android:color/transparent"
         android:dividerPadding="5dp"
         android:orientation="vertical"
-        android:paddingHorizontal="10dp">
+        android:paddingHorizontal="20dp">
 
         <TextView
             android:id="@+id/category_name"

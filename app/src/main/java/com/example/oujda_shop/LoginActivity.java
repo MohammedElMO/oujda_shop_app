@@ -40,10 +40,7 @@ public class LoginActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        if (getSupportActionBar() != null) {
 
-            getSupportActionBar().hide();
-        }
         visibility_icon = findViewById(R.id.pass_icon);
         passwordField = findViewById(R.id.password);
         emailField = findViewById(R.id.email);
@@ -55,7 +52,9 @@ public class LoginActivity extends AppCompatActivity {
 
         handleLogin();
         toCreateAccountActivity();
-
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
     }
 
     private void toCreateAccountActivity() {
@@ -96,11 +95,10 @@ public class LoginActivity extends AppCompatActivity {
             if (isCorrectCredentials) {
                 store.saveBoolean("isLogin", true);
                 store.saveInt("userId", userId);
-                Snackbar.make(findViewById(android.R.id.content), "Nice Your are login", Snackbar.LENGTH_SHORT).show();
                 NavigationUtils.redirect(this, MainActivity.class);
+                Snackbar.make(findViewById(android.R.id.content), "Nice Your are login", Snackbar.LENGTH_SHORT).show();
             } else {
                 Toaster.showSnackBar(getApplicationContext(), findViewById(android.R.id.content), "the provided credentials are not correct or you are not registered", R.drawable.info_icon);
-
             }
 
         });

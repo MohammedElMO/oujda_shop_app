@@ -25,6 +25,26 @@ public class UserQueries implements GeniricDao<User> {
         DbHelper.writeDb(db).update("User", values, "id = ?", new String[]{String.valueOf(userId)});
     }
 
+    public User findUserById(Integer userId) {
+        Cursor cursor = DbHelper.readDb(db).query("User",null, "id = ?", new String[]{String.valueOf(userId)}, null, null, null);
+        User u = null;
+
+        if (cursor.moveToFirst()) {
+            int firstNameIndex = cursor.getColumnIndex("firstName");
+            int lastNameIndex = cursor.getColumnIndex("lastName");
+            int mailIndex = cursor.getColumnIndex("email");
+            int passIndex = cursor.getColumnIndex("password");
+            int profileIndex = cursor.getColumnIndex("profileImage");
+            int userIDIndex = cursor.getColumnIndex("id");
+
+
+            u = new User(cursor.getInt(userIDIndex),cursor.getString(firstNameIndex), cursor.getString(lastNameIndex), cursor.getString(mailIndex), cursor.getString(passIndex),cursor.getString(profileIndex));
+
+            cursor.close();
+        }
+        return u;
+    }
+
     public void updateUserDetails(int userId, String fullName, String email) {
         String[] nameParts = fullName.split(" ", 2);
         String firstName = nameParts.length > 0 ? nameParts[0] : "";
@@ -39,17 +59,19 @@ public class UserQueries implements GeniricDao<User> {
     }
 
     public User loadUserData(int userId) {
-        Cursor cursor = DbHelper.readDb(db).query("User", new String[]{"firstName", "lastName", "email", "profileImage"}, "id = ?", new String[]{String.valueOf(userId)}, null, null, null);
+        Cursor cursor = DbHelper.readDb(db).query("User",null, "id = ?", new String[]{String.valueOf(userId)}, null, null, null);
         User u = null;
 
         if (cursor.moveToFirst()) {
             int firstNameIndex = cursor.getColumnIndex("firstName");
             int lastNameIndex = cursor.getColumnIndex("lastName");
             int mailIndex = cursor.getColumnIndex("email");
+            int passIndex = cursor.getColumnIndex("password");
             int profileIndex = cursor.getColumnIndex("profileImage");
+            int userIDIndex = cursor.getColumnIndex("id");
 
 
-            u = new User(cursor.getString(firstNameIndex), cursor.getString(lastNameIndex), cursor.getString(mailIndex), cursor.getString(profileIndex));
+            u = new User(cursor.getInt(userIDIndex),cursor.getString(firstNameIndex), cursor.getString(lastNameIndex), cursor.getString(mailIndex), cursor.getString(passIndex),cursor.getString(profileIndex));
 
             cursor.close();
         }

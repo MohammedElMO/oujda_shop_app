@@ -2,10 +2,12 @@ package com.example.oujda_shop;
 
 import android.app.ActivityOptions;
 import android.app.AlertDialog;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import androidx.activity.EdgeToEdge;
@@ -16,14 +18,18 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.oujda_shop.DAOs.CategoriesQueries;
+import com.example.oujda_shop.DAOs.UserQueries;
 import com.example.oujda_shop.adapter.CategoryAdapter;
 import com.example.oujda_shop.entities.Category;
 import com.example.oujda_shop.entities.Tables;
+import com.example.oujda_shop.entities.User;
 import com.example.oujda_shop.utils.Alters;
 import com.example.oujda_shop.utils.NavigationUtils;
+import com.example.oujda_shop.utils.SharedStore;
 import com.example.oujda_shop.utils.Toaster;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.io.File;
 import java.util.ArrayList;
 
 
@@ -47,35 +53,29 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-//        addNewCategoryBtn = findViewById(R.id.add_new_category_btn);
+        addNewCategoryBtn = findViewById(R.id.add_new_category_btn);
         db = new CategoriesQueries(Tables.Category, getApplicationContext());
 //
         setUpActionBar();
-//        onAddNewCategory();
+        onAddNewCategory();
 //        //TODO: gray color for the icons of the list
-//
         categoriesList = findViewById(R.id.categories_list);
-//
-//
         categories = db.getAll();
-//
         adapter = new CategoryAdapter(this, categories);
         categoriesList.setAdapter(adapter);
 
-//
         categoriesList.setOnItemClickListener((parent, view, position, id) -> {
             Category category = (Category) parent.getItemAtPosition(position);
 
             NavigationUtils.redirectWithPayload(this, ProductActivity.class, category, "category");
 
         });
-//
-//        categoriesList.setOnItemLongClickListener((parent, view, position, id) -> {
-//            Category category = (Category) parent.getItemAtPosition(position);
-//            showConfirmation(category);
-//
-//            return true;
-//        });
+        categoriesList.setOnItemLongClickListener((parent, view, position, id) -> {
+            Category category = (Category) parent.getItemAtPosition(position);
+            showConfirmation(category);
+
+            return true;
+        });
 
 
     }
@@ -127,11 +127,23 @@ public class MainActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setCustomView(R.layout.action_bar);
             actionBar.setDisplayShowCustomEnabled(true);
-            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setDisplayHomeAsUpEnabled(false);
 
             View view = actionBar.getCustomView();
-            Button profile = view.findViewById(R.id.profile);
+            ImageView profile = view.findViewById(R.id.profile);
 
+
+            SharedStore store = SharedStore.getOneStore(getApplicationContext());
+            var q = new UserQueries(Tables.User, getApplicationContext());
+
+            User u = q.findUserById(store.getInt("userId", -1));
+
+            if (u.getProfilePath() != null) {
+                File imgFile = new File(u.getProfilePath());
+                if (imgFile.exists()) {
+                    profile.setImageURI(Uri.fromFile(imgFile));
+                }
+            }
             profile.setOnClickListener(v -> {
                 NavigationUtils.redirect(this, UserActivity.class);
             });

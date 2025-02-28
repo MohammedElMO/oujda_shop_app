@@ -1,5 +1,6 @@
 package com.example.oujda_shop;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -7,6 +8,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -111,7 +113,6 @@ public class AddProductActivity extends AppCompatActivity {
 
         }
 
-
         if (selectedCategory == null) {
             return;
         }
@@ -131,7 +132,6 @@ public class AddProductActivity extends AppCompatActivity {
             return;
         }
 
-Log.d("price",price);
         try {
             String imagePath = ImageUtils.saveImageToFile(imageUri, getApplicationContext());
 
@@ -144,6 +144,20 @@ Log.d("price",price);
             Toaster.showSnackBar(getApplicationContext(), findViewById(android.R.id.content), "errur lors de l'insertion de produit", R.drawable.error);
         }
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected (MenuItem item){
+        if (item.getItemId() == android.R.id.home) {
+            ActivityOptions options = ActivityOptions.makeCustomAnimation(this, R.anim.slide_in_left, R.anim.slide_out_right);
+           Intent intent = new Intent(this, ProductActivity.class);
+            intent.putExtra("category", selectedCategory);
+
+            startActivity(intent,options.toBundle());
+
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void setUpActionBar() {

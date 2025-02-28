@@ -59,12 +59,9 @@ public class ProductAdapter extends BaseAdapter {
         TextView productDescription = convertView.findViewById(R.id.productDescription);
         CardView cardView = convertView.findViewById(R.id.productCard);
 
-        // Get current product
         Product product = productList.get(position);
-
-        Log.d("desc",product.getDescription());
-        Log.d("name",product.getName());
         categoryBadge.setText(product.getCategory().getName());
+
         File imgFile = new File(product.getImageUrl());
 
         if (imgFile.exists()) {
