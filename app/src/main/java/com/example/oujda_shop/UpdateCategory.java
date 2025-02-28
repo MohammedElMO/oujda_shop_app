@@ -2,10 +2,15 @@ package com.example.oujda_shop;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 
 import androidx.activity.EdgeToEdge;
@@ -17,18 +22,25 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.oujda_shop.DAOs.CategoriesQueries;
 import com.example.oujda_shop.entities.Category;
+import com.example.oujda_shop.entities.Product;
 import com.example.oujda_shop.entities.Tables;
 import com.example.oujda_shop.utils.InputUtils;
 import com.example.oujda_shop.utils.NavigationUtils;
 import com.example.oujda_shop.utils.Toaster;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.io.File;
+import java.io.IOException;
+
 public class UpdateCategory extends AppCompatActivity {
 
-    Spinner icons;
+    private Uri imageUri;
+    static final int REQUEST_IMAGE_PICK = 1;
+
     EditText categoryName, categoryDescription;
+    ImageView categoryImage;
     CategoriesQueries db;
-    Button updateCategoryBtn;
+    Button updateCategoryBtn,uploadIcon;
     Category updatedCategory ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,25 +52,45 @@ public class UpdateCategory extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
         setUpActionBar();
         Intent addIntent = getIntent() ;
         updatedCategory = (Category) addIntent.getSerializableExtra("category");
 
+        categoryImage = findViewById(R.id.categoryImage);
         categoryName = findViewById(R.id.name);
         categoryDescription = findViewById(R.id.description);
-        icons = findViewById(R.id.icons);
+
         updateCategoryBtn = findViewById(R.id.add_category_btn);
-//        onSelectIcon();
+        uploadIcon = findViewById(R.id.add_icon_btn);
+
         db = new CategoriesQueries(Tables.Category, getApplicationContext());
 
         categoryName.setText(updatedCategory.getName());
         categoryDescription.setText(updatedCategory.getDescription());
-//        icons.setSelection(updatedCategory.getImageResource());
 
         updateCategoryBtn.setOnClickListener(v -> {
 
             onUpdateCategory();
         });
+
+
+        if (!TextUtils.isEmpty(updatedCategory.getImageResource())) {
+            File imgFile = new File(updatedCategory.getImageResource());
+            if (imgFile.exists()) {
+                Uri existingUri = Uri.fromFile(imgFile);
+                categoryImage.setImageURI(existingUri);
+
+                imageUri = existingUri;
+            }
+        }
+
+        uploadIcon.setOnClickListener(v -> {
+            Intent uploadIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            startActivityForResult(uploadIntent, REQUEST_IMAGE_PICK);
+
+        });
+
 
     }
 
@@ -73,6 +105,22 @@ public class UpdateCategory extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_IMAGE_PICK && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            imageUri = data.getData();
+
+            try {
+                Bitmap selectedImage = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
+                categoryImage.setImageBitmap(selectedImage);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
    public void onUpdateCategory() {
         String name = InputUtils.getFieldValue(categoryName);
         String description = InputUtils.getFieldValue(categoryDescription);
@@ -81,6 +129,11 @@ public class UpdateCategory extends AppCompatActivity {
             Toaster.showSnackBar(getApplicationContext(), findViewById(android.R.id.content), "il faut fournir un nom à la catégorie", R.drawable.info_icon_blue, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_SLIDE, R.color.white, R.color.black);
             return;
         }
+       if (imageUri == null) {
+           Toaster.showSnackBar(getApplicationContext(), findViewById(android.R.id.content), "tu doit selectionner un image au produit", R.drawable.info_icon_blue, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_SLIDE, R.color.white, R.color.black);
+           return;
+
+       }
 
         try {
             db.update(new Category(name, description, null),updatedCategory.getId());

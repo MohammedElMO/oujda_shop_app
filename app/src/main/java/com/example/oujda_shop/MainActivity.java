@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
 
             User u = q.findUserById(store.getInt("userId", -1));
 
-            if (u.getProfilePath() != null) {
+            if (u !=null && u.getProfilePath() != null) {
                 File imgFile = new File(u.getProfilePath());
                 if (imgFile.exists()) {
                     profile.setImageURI(Uri.fromFile(imgFile));

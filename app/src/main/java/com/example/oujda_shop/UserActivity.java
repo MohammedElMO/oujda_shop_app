@@ -51,6 +51,11 @@ public class UserActivity extends AppCompatActivity {
             return insets;
         });
         setUpActionBar();
+        store = SharedStore.getOneStore(getApplicationContext());
+
+        if(!store.getBoolean("isLogin",false)) {
+            NavigationUtils.redirect(this, LoginActivity.class);
+        }
         profileImage = findViewById(R.id.profile_image);
         changeProfileImageBtn = findViewById(R.id.change_profile_image_btn);
         changePasswordBtn = findViewById(R.id.change_password_btn);
@@ -59,7 +64,6 @@ public class UserActivity extends AppCompatActivity {
         new_password = findViewById(R.id.new_password);
         userEmail = findViewById(R.id.user_email);
         db = new UserQueries(Tables.User, getApplicationContext());
-        store = SharedStore.getOneStore(getApplicationContext());
 
 
         User u = db.loadUserData(store.getInt("userId", -1));

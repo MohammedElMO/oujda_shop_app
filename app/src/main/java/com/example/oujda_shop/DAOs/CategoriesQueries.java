@@ -104,7 +104,6 @@ public class CategoriesQueries implements GeniricDao<Category> {
                 int resIndex = cursor.getColumnIndexOrThrow("imageUrl");
 
 
-
                 int id = cursor.getInt(idIndex);
                 String name = cursor.getString(nameIndex);
                 String createdAt = cursor.getString(dateIndex);

@@ -95,7 +95,7 @@ public class UpdateProduct extends AppCompatActivity {
         }
 
         productDb = new ProductQueries(Tables.Product, getApplicationContext());
-        onSelectIcon();
+//        onSelectIcon();
 
         updateProductBtn.setOnClickListener(v -> {
             onUpdateProduct();

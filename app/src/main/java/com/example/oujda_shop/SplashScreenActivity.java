@@ -33,7 +33,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
             final boolean isLogin = store.getBoolean("isLogin",false);
 
-            if(!isLogin) {
+            if(isLogin) {
                 NavigationUtils.redirect(this, LoginActivity.class);
             }else {
                 NavigationUtils.redirect(this, MainActivity.class);
