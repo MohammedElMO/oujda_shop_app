@@ -16,8 +16,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -34,6 +37,9 @@ import com.example.oujda_shop.utils.InputUtils;
 import com.example.oujda_shop.utils.NavigationUtils;
 import com.example.oujda_shop.utils.Toaster;
 import com.google.android.material.snackbar.Snackbar;
+import com.journeyapps.barcodescanner.ScanContract;
+import com.journeyapps.barcodescanner.ScanIntentResult;
+import com.journeyapps.barcodescanner.ScanOptions;
 
 import java.io.File;
 import java.io.IOException;
@@ -49,6 +55,7 @@ public class UpdateProduct extends AppCompatActivity {
     Product selectedProduct;
     ImageView productImage;
     Button uploadBtn;
+
 
     private Uri imageUri;
     static final int REQUEST_IMAGE_PICK = 1;
@@ -72,7 +79,6 @@ public class UpdateProduct extends AppCompatActivity {
         productImage = findViewById(R.id.productImage);
         uploadBtn = findViewById(R.id.upload_image_btn);
 
-
         Intent myIntent = getIntent();
 
         selectedProduct = (Product) myIntent.getSerializableExtra("product");
@@ -95,7 +101,6 @@ public class UpdateProduct extends AppCompatActivity {
         }
 
         productDb = new ProductQueries(Tables.Product, getApplicationContext());
-//        onSelectIcon();
 
         updateProductBtn.setOnClickListener(v -> {
             onUpdateProduct();
@@ -106,9 +111,14 @@ public class UpdateProduct extends AppCompatActivity {
             startActivityForResult(uploadIntent, REQUEST_IMAGE_PICK);
 
         });
+        onSelect();
 
 
     }
+
+
+
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -123,6 +133,46 @@ public class UpdateProduct extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+    }
+
+    private void onSelect() {
+        CategoriesQueries categoriesQueries = new CategoriesQueries(Tables.Category, getApplicationContext());
+
+        ArrayList<Category> categoryList = categoriesQueries.getAll();
+        ArrayList<String> categoryNames = new ArrayList<>();
+
+        for (Category category : categoryList) {
+            categoryNames.add(category.getName());
+        }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, categoryNames);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        categoriesSpinner.setAdapter(adapter);
+
+        int categoryIndex = -1;
+        for (int i = 0; i < categoryList.size(); i++) {
+            if (categoryList.get(i).getId() == selectedProduct.getCategory().getId()) {
+                categoryIndex = i;
+                selectedCategory = categoryList.get(i);
+                break;
+            }
+        }
+
+        if (categoryIndex != -1) {
+            categoriesSpinner.setSelection(categoryIndex);
+        }
+
+        categoriesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedCategory = categoryList.get(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                selectedCategory = null;
+            }
+        });
     }
 
     void onUpdateProduct() {
@@ -149,7 +199,6 @@ public class UpdateProduct extends AppCompatActivity {
             Toaster.showSnackBar(getApplicationContext(), findViewById(android.R.id.content), "tu doit choisir une categorie", R.drawable.info_icon_blue, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_SLIDE, R.color.white, R.color.black);
             return;
         }
-
         String imagePath =  ImageUtils.saveImageToFile(imageUri,getApplicationContext());
 
 
@@ -162,6 +211,8 @@ public class UpdateProduct extends AppCompatActivity {
         }
 
     }
+
+
     @Override
     public boolean onOptionsItemSelected (MenuItem item){
         if (item.getItemId() == android.R.id.home) {
@@ -176,41 +227,11 @@ public class UpdateProduct extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void onSelectIcon() {
-        CategoriesQueries db = new CategoriesQueries(Tables.Category, getApplicationContext());
-
-        ArrayList<Category> categories = db.getAll();
-        ArrayList<String> dataList = (ArrayList<String>) categories.stream().map(Category::getName).collect(Collectors.toList());
-
-        // Create Adapter
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, dataList);
-
-        // Set dropdown style
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        // Attach adapter to Spinner
-        categoriesSpinner.setAdapter(adapter);
-
-        // Handle item selection
-        categoriesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selectCate = dataList.get(position);
-                selectedCategory = db.findByName(selectCate);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                // Do nothing
-            }
-        });
-
-    }
 
     private void setUpActionBar() {
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
-            actionBar.setCustomView(R.layout.action_bar_category_update);
+            actionBar.setCustomView(R.layout.action_bar_update_product);
             actionBar.setDisplayShowCustomEnabled(true);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }

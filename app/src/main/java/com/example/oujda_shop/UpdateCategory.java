@@ -11,7 +11,6 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Spinner;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.ActionBar;
@@ -22,8 +21,8 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.oujda_shop.DAOs.CategoriesQueries;
 import com.example.oujda_shop.entities.Category;
-import com.example.oujda_shop.entities.Product;
 import com.example.oujda_shop.entities.Tables;
+import com.example.oujda_shop.utils.ImageUtils;
 import com.example.oujda_shop.utils.InputUtils;
 import com.example.oujda_shop.utils.NavigationUtils;
 import com.example.oujda_shop.utils.Toaster;
@@ -40,8 +39,9 @@ public class UpdateCategory extends AppCompatActivity {
     EditText categoryName, categoryDescription;
     ImageView categoryImage;
     CategoriesQueries db;
-    Button updateCategoryBtn,uploadIcon;
-    Category updatedCategory ;
+    Button updateCategoryBtn, uploadIcon;
+    Category updatedCategory;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +54,7 @@ public class UpdateCategory extends AppCompatActivity {
         });
 
         setUpActionBar();
-        Intent addIntent = getIntent() ;
+        Intent addIntent = getIntent();
         updatedCategory = (Category) addIntent.getSerializableExtra("category");
 
         categoryImage = findViewById(R.id.categoryImage);
@@ -95,11 +95,11 @@ public class UpdateCategory extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected (MenuItem item){
+    public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             ActivityOptions options = ActivityOptions.makeCustomAnimation(this, R.anim.slide_in_left, R.anim.slide_out_right);
 
-            NavigationUtils.redirectWithAnimation(this,MainActivity.class,options.toBundle());
+            NavigationUtils.redirectWithAnimation(this, MainActivity.class, options.toBundle());
 
             return true;
         }
@@ -121,22 +121,26 @@ public class UpdateCategory extends AppCompatActivity {
             }
         }
     }
-   public void onUpdateCategory() {
+
+    public void onUpdateCategory() {
         String name = InputUtils.getFieldValue(categoryName);
         String description = InputUtils.getFieldValue(categoryDescription);
 
+        if (imageUri == null) {
+            Toaster.showSnackBar(getApplicationContext(), findViewById(android.R.id.content), "tu doit selectionner un image au produit", R.drawable.info_icon_blue, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_SLIDE, R.color.white, R.color.black);
+            return;
+
+        }
         if (name.trim().isEmpty()) {
             Toaster.showSnackBar(getApplicationContext(), findViewById(android.R.id.content), "il faut fournir un nom à la catégorie", R.drawable.info_icon_blue, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_SLIDE, R.color.white, R.color.black);
             return;
         }
-       if (imageUri == null) {
-           Toaster.showSnackBar(getApplicationContext(), findViewById(android.R.id.content), "tu doit selectionner un image au produit", R.drawable.info_icon_blue, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_SLIDE, R.color.white, R.color.black);
-           return;
 
-       }
 
         try {
-            db.update(new Category(name, description, null),updatedCategory.getId());
+            String imagePath =  ImageUtils.saveImageToFile(imageUri,getApplicationContext());
+
+            db.update(new Category(name, description, imagePath), updatedCategory.getId());
             NavigationUtils.redirect(this, MainActivity.class);
             Toaster.showSnackBar(this, findViewById(android.R.id.content), "la categorie a ete modifiée avec succès", R.drawable.done, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE, R.color.white, R.color.black);
 
@@ -144,10 +148,11 @@ public class UpdateCategory extends AppCompatActivity {
             Toaster.showSnackBar(getApplicationContext(), findViewById(android.R.id.content), "errur lors de l'insertion de categorie", R.drawable.error);
         }
     }
+
     private void setUpActionBar() {
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
-            actionBar.setCustomView(R.layout.action_bar_update_product);
+            actionBar.setCustomView(R.layout.action_bar_category_update);
             actionBar.setDisplayShowCustomEnabled(true);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }

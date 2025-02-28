@@ -7,13 +7,15 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -29,6 +31,9 @@ import com.example.oujda_shop.utils.InputUtils;
 import com.example.oujda_shop.utils.NavigationUtils;
 import com.example.oujda_shop.utils.Toaster;
 import com.google.android.material.snackbar.Snackbar;
+import com.journeyapps.barcodescanner.ScanContract;
+import com.journeyapps.barcodescanner.ScanIntentResult;
+import com.journeyapps.barcodescanner.ScanOptions;
 
 import java.io.IOException;
 
@@ -44,6 +49,7 @@ public class AddProductActivity extends AppCompatActivity {
 
     private Uri imageUri;
     static final int REQUEST_IMAGE_PICK = 1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +90,9 @@ public class AddProductActivity extends AppCompatActivity {
 
 
     }
+
+
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -147,13 +156,13 @@ public class AddProductActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected (MenuItem item){
+    public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             ActivityOptions options = ActivityOptions.makeCustomAnimation(this, R.anim.slide_in_left, R.anim.slide_out_right);
-           Intent intent = new Intent(this, ProductActivity.class);
+            Intent intent = new Intent(this, ProductActivity.class);
             intent.putExtra("category", selectedCategory);
 
-            startActivity(intent,options.toBundle());
+            startActivity(intent, options.toBundle());
 
             return true;
         }

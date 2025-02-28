@@ -35,7 +35,6 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     // ML kit - > access to camera + scan code QR + show product details
-//    Log.d("Hello","Dbrna 3liha");
 
     ListView categoriesList;
     Button addNewCategoryBtn;
@@ -55,10 +54,8 @@ public class MainActivity extends AppCompatActivity {
         });
         addNewCategoryBtn = findViewById(R.id.add_new_category_btn);
         db = new CategoriesQueries(Tables.Category, getApplicationContext());
-//
         setUpActionBar();
         onAddNewCategory();
-//        //TODO: gray color for the icons of the list
         categoriesList = findViewById(R.id.categories_list);
         categories = db.getAll();
         adapter = new CategoryAdapter(this, categories);

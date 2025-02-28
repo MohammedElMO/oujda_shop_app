@@ -17,6 +17,7 @@
         android:dividerHeight="5dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
         <Button
             android:id="@+id/add_new_category_btn"
             android:layout_width="50dp"

@@ -44,6 +44,7 @@ public class DetailsActivity extends AppCompatActivity {
         TextView name = findViewById(R.id.product_name);
         TextView price = findViewById(R.id.product_price);
         TextView category = findViewById(R.id.category_badge);
+        TextView qrCode = findViewById(R.id.qrCode);
         ImageView image = findViewById(R.id.product_image);
 
 

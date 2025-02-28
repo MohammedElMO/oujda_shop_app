@@ -1,7 +1,5 @@
 package com.example.oujda_shop;
 
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 
@@ -27,24 +25,27 @@ public class SplashScreenActivity extends AppCompatActivity {
             return insets;
         });
 
+        final int TIMER = 300;
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
 
         new Handler().postDelayed(() -> {
-            SharedStore store =  SharedStore.getOneStore(getApplicationContext());
+            SharedStore store = SharedStore.getOneStore(getApplicationContext());
 
-            final boolean isLogin = store.getBoolean("isLogin",false);
+            final boolean isLogin = store.getBoolean("isLogin", false);
 
-            if(isLogin) {
+            if (!isLogin) {
                 NavigationUtils.redirect(this, LoginActivity.class);
-            }else {
+            } else {
                 NavigationUtils.redirect(this, MainActivity.class);
 
             }
 
 
-
             finish();
 
-        },40);
+        }, TIMER);
 
     }
 }

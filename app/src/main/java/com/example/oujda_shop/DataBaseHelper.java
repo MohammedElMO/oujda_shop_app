@@ -11,7 +11,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
 
     private DataBaseHelper(@Nullable Context ctx) {
-        super(ctx, "shop.db", null, 18);
+        super(ctx, "shop.db", null, 22);
 
 
     }

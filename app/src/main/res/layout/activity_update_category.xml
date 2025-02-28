@@ -45,7 +45,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.582"
-        tools:layout_editor_absoluteX="0dp">
+        >
 
         <Button
             android:id="@+id/add_icon_btn"
@@ -80,7 +80,7 @@
         android:background="@drawable/default_btn"
         android:drawableStart="@drawable/category"
         android:drawablePadding="5dp"
-        android:text="Ajouter categorie"
+        android:text="Update Category"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

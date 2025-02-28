@@ -88,6 +88,12 @@ public class UserActivity extends AppCompatActivity {
         });
 
         saveChangesBtn.setOnClickListener(v -> updateUserInfo());
+
+        Button logOut = findViewById(R.id.logout);
+        logOut.setOnClickListener(v -> {
+            store.clear();
+            NavigationUtils.redirect(this, LoginActivity.class);
+        });
     }
 
     @Override

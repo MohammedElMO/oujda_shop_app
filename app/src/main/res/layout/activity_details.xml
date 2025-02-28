@@ -24,7 +24,6 @@
             android:layout_height="wrap_content"
             android:background="@drawable/badge_background"
             android:padding="8dp"
-            android:text="categoryName"
             android:textColor="@android:color/white"
             android:textStyle="bold"
             android:layout_marginTop="-20dp"
@@ -34,7 +33,6 @@
             android:id="@+id/product_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Product Name"
             android:textSize="22sp"
             android:textStyle="bold"
             android:paddingTop="8dp" />
@@ -43,7 +41,6 @@
             android:id="@+id/product_price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="$99.99"
             android:textSize="18sp"
             android:textColor="@color/SecondaryColor"
             android:textStyle="bold" />
@@ -52,7 +49,12 @@
             android:id="@+id/product_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Product description goes here."
+            android:textSize="16sp"
+            android:paddingTop="8dp" />
+        <TextView
+            android:id="@+id/qrCode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:textSize="16sp"
             android:paddingTop="8dp" />
 

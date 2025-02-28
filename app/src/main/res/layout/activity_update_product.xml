@@ -19,7 +19,6 @@
         android:focusable="true"
         android:hint="Name"
         android:inputType="text"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -52,7 +51,7 @@
         android:drawableStart="@drawable/money_icon"
         android:drawablePadding="13dp"
         android:focusable="true"
-        android:hint="Prix"
+        android:hint="Price"
         android:inputType="number"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -63,17 +62,16 @@
     <Spinner
         android:id="@+id/categories"
         android:layout_width="wrap_content"
-
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_input"
         android:focusable="true"
         android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintHorizontal_bias="0.051"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/name"
-        app:layout_constraintVertical_bias="0.597" />
+        app:layout_constraintVertical_bias="0.522" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -81,7 +79,7 @@
         android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.668"
+        app:layout_constraintVertical_bias="0.773"
         tools:layout_editor_absoluteX="0dp">
 
         <Button
@@ -89,7 +87,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/upload"
-            android:text="télécharger une image"
+            android:text="upload an image"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.146"
@@ -104,7 +102,10 @@
             android:layout_marginHorizontal="20dp"
             android:contentDescription="Product Image"
             android:scaleType="centerCrop" />
+
     </LinearLayout>
+
+
 
     <Button
         android:id="@+id/add_product_btn"
@@ -115,7 +116,7 @@
         android:background="@drawable/default_btn"
         android:drawableStart="@drawable/category"
         android:drawablePadding="5dp"
-        android:text="Mise a jour un Produit"
+        android:text="Update Product"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

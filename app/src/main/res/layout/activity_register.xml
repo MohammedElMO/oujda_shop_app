@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
-        android:text="Créez votre compte"
+        android:text="Create Your Account"
 
         android:textColor="@color/primaryColor"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
@@ -62,7 +62,7 @@
             android:background="@drawable/rounded_input"
             android:drawableStart="@drawable/text"
             android:drawablePadding="13dp"
-            android:hint="Prenom"
+            android:hint="FirstName"
             android:inputType="text"
             />
 
@@ -75,7 +75,7 @@
             android:background="@drawable/rounded_input"
             android:drawableStart="@drawable/text"
             android:drawablePadding="13dp"
-            android:hint="Nom"
+            android:hint="LastName"
             android:inputType="text"
             />
     </LinearLayout>
@@ -134,7 +134,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"
         android:background="@drawable/default_btn"
-        android:text="S'inscrire"
+        android:text="Register"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password" />

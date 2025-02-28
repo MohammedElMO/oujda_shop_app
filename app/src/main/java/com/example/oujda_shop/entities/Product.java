@@ -22,6 +22,7 @@ public class Product implements Serializable {
         this.category = category;
     }
 
+
     public Product(String name, String description, double price, String imageUrl, String createdAt, Category category) {
         this.name = name;
         this.description = description;
@@ -94,4 +95,6 @@ public class Product implements Serializable {
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
+
+
 }

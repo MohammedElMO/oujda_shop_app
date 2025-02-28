@@ -80,7 +80,7 @@
         android:background="@drawable/default_btn"
         android:drawableStart="@drawable/category"
         android:drawablePadding="5dp"
-        android:text="Ajouter categorie"
+        android:text="Add Category"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

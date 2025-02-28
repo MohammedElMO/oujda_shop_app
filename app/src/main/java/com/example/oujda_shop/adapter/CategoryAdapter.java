@@ -55,14 +55,25 @@ public class CategoryAdapter extends BaseAdapter {
 
         Category category = categoryList.get(position);
 
-        File imgFile = new File(category.getImageResource());
+//        File imgFile = new File(category.getImageResource());
+//
+//        if (imgFile.exists()) {
+//            catImage.setImageURI(Uri.fromFile(imgFile));
+//        } else {
+//            catImage.setImageResource(R.drawable.oujda_shop);
+//        }
 
-        if (imgFile.exists()) {
-            catImage.setImageURI(Uri.fromFile(imgFile));
+        if (category.getImageResource() != null && !category.getImageResource().isEmpty()) {
+            File imgFile = new File(category.getImageResource());
+
+            if (imgFile.exists()) {
+                catImage.setImageURI(Uri.fromFile(imgFile));
+            } else {
+                catImage.setImageResource(R.drawable.oujda_shop); // A default placeholder
+            }
         } else {
-            catImage.setImageResource(R.drawable.oujda_shop);
+            catImage.setImageResource(R.drawable.oujda_shop); // A default placeholder
         }
-
 
         name.setText(category.getName());
         createdAt.setText(category.getCreatedAt());
