@@ -113,11 +113,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    @Override
-    public void finish() {
-        super.finish();
-        overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_bottom);
-    }
 
     private void setUpActionBar() {
         ActionBar actionBar = getSupportActionBar();

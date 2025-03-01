@@ -50,14 +50,13 @@ public class ProductAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         convertView = inflater.inflate(R.layout.product_item, parent, false);
 
-        // Bind views
         TextView categoryBadge = convertView.findViewById(R.id.categoryBadge);
         ImageView productImage = convertView.findViewById(R.id.productImage);
         TextView productName = convertView.findViewById(R.id.productName);
         TextView productPrice = convertView.findViewById(R.id.productPrice);
         TextView productDate = convertView.findViewById(R.id.productDate);
         TextView productDescription = convertView.findViewById(R.id.productDescription);
-        CardView cardView = convertView.findViewById(R.id.productCard);
+//        CardView cardView = convertView.findViewById(R.id.productCard);
 
         Product product = productList.get(position);
         categoryBadge.setText(product.getCategory().getName());

@@ -101,7 +101,7 @@ public class RegisterActivity extends AppCompatActivity {
                 User createdUser = new User(InputUtils.getFieldValue(firstNameField), InputUtils.getFieldValue(lastNameField), InputUtils.getFieldValue(emailField), InputUtils.getFieldValue(passwordField));
 
                 db.insert(createdUser);
-                NavigationUtils.redirect(this, MainActivity.class);
+                NavigationUtils.redirect(this, LoginActivity.class);
 
             } catch (Exception e) {
                 Log.d("Error", e.getMessage());

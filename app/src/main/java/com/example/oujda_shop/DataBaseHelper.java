@@ -6,13 +6,15 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import com.example.oujda_shop.utils.SharedStore;
+
 public class DataBaseHelper extends SQLiteOpenHelper {
     private static DataBaseHelper DbInstance = null;
-
+    private Context ctx;
 
     private DataBaseHelper(@Nullable Context ctx) {
-        super(ctx, "shop.db", null, 22);
-
+        super(ctx, "shop.db", null, 24);
+        this.ctx  = ctx;
 
     }
 
@@ -60,6 +62,10 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS User" );
         db.execSQL("DROP TABLE IF EXISTS Category" );
         db.execSQL("DROP TABLE IF EXISTS Product" );
+        SharedStore store = SharedStore.getOneStore(ctx);
+
+        store.clear();
+
         onCreate(db);
     }
 
