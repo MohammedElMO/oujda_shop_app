@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
             db.delete(category.getId());
             adapter.updateList(db.getAll());
             dialog.dismiss();
-            Toaster.showSnackBar(this, findViewById(android.R.id.content), "la categorie a été supprimée avec succès", R.drawable.done, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE, R.color.white, R.color.black);
+            Toaster.showSnackBar(this, findViewById(android.R.id.content), "category was deleted with success", R.drawable.done, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE, R.color.white, R.color.black);
 
         });
 

@@ -25,7 +25,7 @@ public class SplashScreenActivity extends AppCompatActivity {
             return insets;
         });
 
-        final int TIMER = 300;
+        final int TIMER = 3000;
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }

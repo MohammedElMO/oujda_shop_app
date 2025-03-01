@@ -95,11 +95,11 @@ public class AddCategoryActivity extends AppCompatActivity {
         String description = InputUtils.getFieldValue(categoryDescription);
 
         if (name.trim().isEmpty()) {
-            Toaster.showSnackBar(getApplicationContext(), findViewById(android.R.id.content), "il faut fournir un nom à la catégorie", R.drawable.info_icon_blue, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_SLIDE, R.color.white, R.color.black);
+            Toaster.showSnackBar(getApplicationContext(), findViewById(android.R.id.content), "you should provide a category name", R.drawable.info_icon_blue, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_SLIDE, R.color.white, R.color.black);
             return;
         }
         if (imageUri == null) {
-            Toaster.showSnackBar(getApplicationContext(), findViewById(android.R.id.content), "il faut selectionner une image pour la catégorie", R.drawable.info_icon_blue, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_SLIDE, R.color.white, R.color.black);
+            Toaster.showSnackBar(getApplicationContext(), findViewById(android.R.id.content), "you should upload an icon to the category", R.drawable.info_icon_blue, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_SLIDE, R.color.white, R.color.black);
             return;
 
         }
@@ -110,7 +110,7 @@ public class AddCategoryActivity extends AppCompatActivity {
             db.insert(new Category(name, description, imagePath));
             NavigationUtils.redirect(this, MainActivity.class);
         } catch (Exception e) {
-            Toaster.showSnackBar(getApplicationContext(), findViewById(android.R.id.content), "errur lors de l'insertion de categorie", R.drawable.error);
+            Toaster.showSnackBar(getApplicationContext(), findViewById(android.R.id.content), "Error when inserting category", R.drawable.error);
         }
 
     }

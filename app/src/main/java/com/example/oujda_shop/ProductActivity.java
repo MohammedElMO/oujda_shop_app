@@ -110,7 +110,7 @@ public class ProductActivity extends AppCompatActivity {
             productDb.delete(product.getId());
             productAdapter.updateList(productDb.getAll());
             dialog.dismiss();
-            Toaster.showSnackBar(this, findViewById(android.R.id.content), "le produit a ete supprimer", R.drawable.done, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE, R.color.white, R.color.black);
+            Toaster.showSnackBar(this, findViewById(android.R.id.content), "product was deleted with success!", R.drawable.done, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE, R.color.white, R.color.black);
 
         });
 

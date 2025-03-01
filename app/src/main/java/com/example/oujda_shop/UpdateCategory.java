@@ -127,12 +127,12 @@ public class UpdateCategory extends AppCompatActivity {
         String description = InputUtils.getFieldValue(categoryDescription);
 
         if (imageUri == null) {
-            Toaster.showSnackBar(getApplicationContext(), findViewById(android.R.id.content), "tu doit selectionner un image au produit", R.drawable.info_icon_blue, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_SLIDE, R.color.white, R.color.black);
+            Toaster.showSnackBar(getApplicationContext(), findViewById(android.R.id.content), "you should upload an image for the product", R.drawable.info_icon_blue, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_SLIDE, R.color.white, R.color.black);
             return;
 
         }
         if (name.trim().isEmpty()) {
-            Toaster.showSnackBar(getApplicationContext(), findViewById(android.R.id.content), "il faut fournir un nom à la catégorie", R.drawable.info_icon_blue, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_SLIDE, R.color.white, R.color.black);
+            Toaster.showSnackBar(getApplicationContext(), findViewById(android.R.id.content), "you should provide a name for the product", R.drawable.info_icon_blue, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_SLIDE, R.color.white, R.color.black);
             return;
         }
 
@@ -142,10 +142,10 @@ public class UpdateCategory extends AppCompatActivity {
 
             db.update(new Category(name, description, imagePath), updatedCategory.getId());
             NavigationUtils.redirect(this, MainActivity.class);
-            Toaster.showSnackBar(this, findViewById(android.R.id.content), "la categorie a ete modifiée avec succès", R.drawable.done, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE, R.color.white, R.color.black);
+            Toaster.showSnackBar(this, findViewById(android.R.id.content), "the category was modified with success!", R.drawable.done, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE, R.color.white, R.color.black);
 
         } catch (Exception e) {
-            Toaster.showSnackBar(getApplicationContext(), findViewById(android.R.id.content), "errur lors de l'insertion de categorie", R.drawable.error);
+            Toaster.showSnackBar(getApplicationContext(), findViewById(android.R.id.content), "Error", R.drawable.error);
         }
     }
 

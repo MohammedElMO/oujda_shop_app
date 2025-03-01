@@ -181,22 +181,22 @@ public class UpdateProduct extends AppCompatActivity {
         String price = InputUtils.getFieldValue(productPrice);
 
         if (imageUri == null) {
-            Toaster.showSnackBar(getApplicationContext(), findViewById(android.R.id.content), "tu doit selectionner un image au produit", R.drawable.info_icon_blue, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_SLIDE, R.color.white, R.color.black);
+            Toaster.showSnackBar(getApplicationContext(), findViewById(android.R.id.content), "you should upload an image for the product", R.drawable.info_icon_blue, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_SLIDE, R.color.white, R.color.black);
             return;
 
         }
         if (name.trim().isEmpty()) {
-            Toaster.showSnackBar(getApplicationContext(), findViewById(android.R.id.content), "nom de produit est obligatoire", R.drawable.info_icon_blue, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_SLIDE, R.color.white, R.color.black);
+            Toaster.showSnackBar(getApplicationContext(), findViewById(android.R.id.content), "product name must be provided", R.drawable.info_icon_blue, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_SLIDE, R.color.white, R.color.black);
             return;
         }
 
         if (price.trim().isEmpty()) {
-            Toaster.showSnackBar(getApplicationContext(), findViewById(android.R.id.content), "le prix est obligatoire", R.drawable.info_icon_blue, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_SLIDE, R.color.white, R.color.black);
+            Toaster.showSnackBar(getApplicationContext(), findViewById(android.R.id.content), "price must be provided", R.drawable.info_icon_blue, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_SLIDE, R.color.white, R.color.black);
             return;
         }
 
         if (selectedCategory == null) {
-            Toaster.showSnackBar(getApplicationContext(), findViewById(android.R.id.content), "tu doit choisir une categorie", R.drawable.info_icon_blue, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_SLIDE, R.color.white, R.color.black);
+            Toaster.showSnackBar(getApplicationContext(), findViewById(android.R.id.content), "you should select a category", R.drawable.info_icon_blue, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_SLIDE, R.color.white, R.color.black);
             return;
         }
         String imagePath =  ImageUtils.saveImageToFile(imageUri,getApplicationContext());
@@ -207,7 +207,7 @@ public class UpdateProduct extends AppCompatActivity {
             NavigationUtils.redirectWithPayload(this, ProductActivity.class,selectedProduct.getCategory(),"category");
         } catch (Exception e) {
             e.printStackTrace();
-            Toaster.showSnackBar(getApplicationContext(), findViewById(android.R.id.content), "errur lors de l'insertion de produit", R.drawable.error);
+            Toaster.showSnackBar(getApplicationContext(), findViewById(android.R.id.content), "Error", R.drawable.error);
         }
 
     }

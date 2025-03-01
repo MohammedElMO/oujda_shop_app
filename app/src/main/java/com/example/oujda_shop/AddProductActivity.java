@@ -117,7 +117,7 @@ public class AddProductActivity extends AppCompatActivity {
 
 
         if (imageUri == null) {
-            Toaster.showSnackBar(getApplicationContext(), findViewById(android.R.id.content), "tu doit selectionner un image au produit", R.drawable.info_icon_blue, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_SLIDE, R.color.white, R.color.black);
+            Toaster.showSnackBar(getApplicationContext(), findViewById(android.R.id.content), "you should select an image for the category", R.drawable.info_icon_blue, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_SLIDE, R.color.white, R.color.black);
             return;
 
         }
@@ -128,16 +128,16 @@ public class AddProductActivity extends AppCompatActivity {
 
 
         if (name.trim().isEmpty()) {
-            Toaster.showSnackBar(getApplicationContext(), findViewById(android.R.id.content), "nom de produit est obligatoire", R.drawable.info_icon_blue, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_SLIDE, R.color.white, R.color.black);
+            Toaster.showSnackBar(getApplicationContext(), findViewById(android.R.id.content), "product name must be supplied", R.drawable.info_icon_blue, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_SLIDE, R.color.white, R.color.black);
             return;
         }
 
         if (price.trim().isEmpty() || price.trim().isBlank()) {
-            Toaster.showSnackBar(getApplicationContext(), findViewById(android.R.id.content), "le prix est obligatoire", R.drawable.info_icon_blue, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_SLIDE, R.color.white, R.color.black);
+            Toaster.showSnackBar(getApplicationContext(), findViewById(android.R.id.content), "price must be supplied", R.drawable.info_icon_blue, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_SLIDE, R.color.white, R.color.black);
             return;
         }
         if (!TextUtils.isDigitsOnly(price)) {
-            Toaster.showSnackBar(getApplicationContext(), findViewById(android.R.id.content), "le prix doit etre un nombre", R.drawable.info_icon_blue, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_SLIDE, R.color.white, R.color.black);
+            Toaster.showSnackBar(getApplicationContext(), findViewById(android.R.id.content), "the price must be a number", R.drawable.info_icon_blue, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_SLIDE, R.color.white, R.color.black);
             return;
         }
 
@@ -150,7 +150,7 @@ public class AddProductActivity extends AppCompatActivity {
             NavigationUtils.redirectWithPayload(this, ProductActivity.class, selectedCategory, "category");
         } catch (Exception e) {
             e.printStackTrace();
-            Toaster.showSnackBar(getApplicationContext(), findViewById(android.R.id.content), "errur lors de l'insertion de produit", R.drawable.error);
+            Toaster.showSnackBar(getApplicationContext(), findViewById(android.R.id.content), "Error when insering the product", R.drawable.error);
         }
 
     }
